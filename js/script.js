@@ -21,11 +21,16 @@ function agregarPersona() {
   //borramos el contenido del elemento
   msgErrorEdad.innerHTML = "";
 
+  const msgErrorEmail = document.querySelector("#msg-error.email");
+  msgErrorEmail.innerHTML = "";
+
   //Obtenemos el input donde se ingresa el nombre
   const inputNombre = document.querySelector("#input-nombre");
 
   //Obtenemos el input donde se ingresa la edad
   const inputEdad = document.querySelector("#input-edad");
+
+  const inputEmail = document.querySelector("input-email");
 
   //Creamos una variable que indica si el formulario tiene error
   //Inicialmente suponemos que el fomulario NO tiene error
@@ -56,6 +61,17 @@ function agregarPersona() {
     //Le asigamos el valor true indicando que el formulario tiene error
     hayError = true;
   }
+
+  const email = inputEmail.value.trim();
+  if (email === ""){
+    msgErrorNombre.innerHTML = "Debe ingresar un email";
+    hayError = true;
+  }
+
+  function esEmailValido(email){
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return regex.test(email);
+}
 
   //Si el formulario tiene algun error (valores invalidos)
   if (hayError) {
